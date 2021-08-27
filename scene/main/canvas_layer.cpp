@@ -265,11 +265,11 @@ void CanvasLayer::_update_follow_viewport(bool p_force_exit) {
 	if (!is_inside_tree()) {
 		return;
 	}
-	if (p_force_exit || !follow_viewport) {
+	/*if (p_force_exit || !follow_viewport) {
 		VS::get_singleton()->canvas_set_parent(canvas, RID(), 1.0);
 	} else {
 		VS::get_singleton()->canvas_set_parent(canvas, vp->get_world_2d()->get_canvas(), follow_viewport_scale);
-	}
+	}*/
 }
 
 void CanvasLayer::_bind_methods() {

@@ -33,7 +33,7 @@
 #include "core/os/os.h"
 #include "scene/main/scene_tree.h"
 #include "scene/resources/mesh.h"
-#include "servers/physics_server.h"
+//#include "servers/physics_server.h"
 
 void Shape::add_vertices_to_array(PoolVector<Vector3> &array, const Transform &p_xform) {
 
@@ -56,7 +56,7 @@ real_t Shape::get_margin() const {
 
 void Shape::set_margin(real_t p_margin) {
 	margin = p_margin;
-	PhysicsServer::get_singleton()->shape_set_margin(shape, margin);
+	//PhysicsServer::get_singleton()->shape_set_margin(shape, margin);
 }
 
 Ref<ArrayMesh> Shape::get_debug_mesh() {
@@ -125,5 +125,5 @@ Shape::Shape(RID p_shape) :
 
 Shape::~Shape() {
 
-	PhysicsServer::get_singleton()->free(shape);
+	//PhysicsServer::get_singleton()->free(shape);
 }

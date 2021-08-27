@@ -1,43 +1,13 @@
-/*************************************************************************/
-/*  core_bind.cpp                                                        */
-/*************************************************************************/
-/*                       This file is part of:                           */
-/*                           GODOT ENGINE                                */
-/*                      https://godotengine.org                          */
-/*************************************************************************/
-/* Copyright (c) 2007-2021 Juan Linietsky, Ariel Manzur.                 */
-/* Copyright (c) 2014-2021 Godot Engine contributors (cf. AUTHORS.md).   */
-/*                                                                       */
-/* Permission is hereby granted, free of charge, to any person obtaining */
-/* a copy of this software and associated documentation files (the       */
-/* "Software"), to deal in the Software without restriction, including   */
-/* without limitation the rights to use, copy, modify, merge, publish,   */
-/* distribute, sublicense, and/or sell copies of the Software, and to    */
-/* permit persons to whom the Software is furnished to do so, subject to */
-/* the following conditions:                                             */
-/*                                                                       */
-/* The above copyright notice and this permission notice shall be        */
-/* included in all copies or substantial portions of the Software.       */
-/*                                                                       */
-/* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,       */
-/* EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF    */
-/* MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.*/
-/* IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY  */
-/* CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,  */
-/* TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE     */
-/* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                */
-/*************************************************************************/
-
 #include "core_bind.h"
 
-#include "core/crypto/crypto_core.h"
 #include "core/io/file_access_compressed.h"
-#include "core/io/file_access_encrypted.h"
+//#include "core/io/file_access_encrypted.h"
 #include "core/io/json.h"
 #include "core/io/marshalls.h"
 #include "core/math/geometry.h"
 #include "core/os/keyboard.h"
 #include "core/os/os.h"
+#include "core/crypto/crypto_core.h"
 #include "core/project_settings.h"
 
 /**
@@ -256,6 +226,7 @@ _OS::VideoDriver _OS::get_current_video_driver() const {
 	return (VideoDriver)OS::get_singleton()->get_current_video_driver();
 }
 
+/*
 int _OS::get_audio_driver_count() const {
 	return OS::get_singleton()->get_audio_driver_count();
 }
@@ -263,6 +234,7 @@ int _OS::get_audio_driver_count() const {
 String _OS::get_audio_driver_name(int p_driver) const {
 	return OS::get_singleton()->get_audio_driver_name(p_driver);
 }
+*/
 
 PoolStringArray _OS::get_connected_midi_inputs() {
 	return OS::get_singleton()->get_connected_midi_inputs();
@@ -1270,11 +1242,13 @@ void _OS::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_video_driver_name", "driver"), &_OS::get_video_driver_name);
 	ClassDB::bind_method(D_METHOD("get_current_video_driver"), &_OS::get_current_video_driver);
 
+	/*
 	ClassDB::bind_method(D_METHOD("get_audio_driver_count"), &_OS::get_audio_driver_count);
 	ClassDB::bind_method(D_METHOD("get_audio_driver_name", "driver"), &_OS::get_audio_driver_name);
 	ClassDB::bind_method(D_METHOD("get_connected_midi_inputs"), &_OS::get_connected_midi_inputs);
 	ClassDB::bind_method(D_METHOD("open_midi_inputs"), &_OS::open_midi_inputs);
 	ClassDB::bind_method(D_METHOD("close_midi_inputs"), &_OS::close_midi_inputs);
+	*/
 
 	ClassDB::bind_method(D_METHOD("get_screen_count"), &_OS::get_screen_count);
 	ClassDB::bind_method(D_METHOD("get_current_screen"), &_OS::get_current_screen);
@@ -1942,6 +1916,7 @@ _Geometry::_Geometry() {
 
 ///////////////////////// FILE
 
+/*
 Error _File::open_encrypted(const String &p_path, ModeFlags p_mode_flags, const Vector<uint8_t> &p_key) {
 
 	Error err = open(p_path, p_mode_flags);
@@ -1976,6 +1951,7 @@ Error _File::open_encrypted_pass(const String &p_path, ModeFlags p_mode_flags, c
 	f = fae;
 	return OK;
 }
+*/
 
 Error _File::open_compressed(const String &p_path, ModeFlags p_mode_flags, CompressionMode p_compress_mode) {
 
@@ -2320,8 +2296,9 @@ uint64_t _File::get_modified_time(const String &p_file) const {
 
 void _File::_bind_methods() {
 
-	ClassDB::bind_method(D_METHOD("open_encrypted", "path", "mode_flags", "key"), &_File::open_encrypted);
+	/*ClassDB::bind_method(D_METHOD("open_encrypted", "path", "mode_flags", "key"), &_File::open_encrypted);
 	ClassDB::bind_method(D_METHOD("open_encrypted_with_pass", "path", "mode_flags", "pass"), &_File::open_encrypted_pass);
+	*/
 	ClassDB::bind_method(D_METHOD("open_compressed", "path", "mode_flags", "compression_mode"), &_File::open_compressed, DEFVAL(0));
 
 	ClassDB::bind_method(D_METHOD("open", "path", "flags"), &_File::open);
@@ -3128,6 +3105,7 @@ MainLoop *_Engine::get_main_loop() const {
 	return OS::get_singleton()->get_main_loop();
 }
 
+/*
 Dictionary _Engine::get_version_info() const {
 
 	return Engine::get_singleton()->get_version_info();
@@ -3152,6 +3130,7 @@ Dictionary _Engine::get_license_info() const {
 String _Engine::get_license_text() const {
 	return Engine::get_singleton()->get_license_text();
 }
+*/
 
 bool _Engine::is_in_physics_frame() const {
 	return Engine::get_singleton()->is_in_physics_frame();
@@ -3197,12 +3176,13 @@ void _Engine::_bind_methods() {
 
 	ClassDB::bind_method(D_METHOD("get_main_loop"), &_Engine::get_main_loop);
 
-	ClassDB::bind_method(D_METHOD("get_version_info"), &_Engine::get_version_info);
+	/*ClassDB::bind_method(D_METHOD("get_version_info"), &_Engine::get_version_info);
 	ClassDB::bind_method(D_METHOD("get_author_info"), &_Engine::get_author_info);
 	ClassDB::bind_method(D_METHOD("get_copyright_info"), &_Engine::get_copyright_info);
 	ClassDB::bind_method(D_METHOD("get_donor_info"), &_Engine::get_donor_info);
 	ClassDB::bind_method(D_METHOD("get_license_info"), &_Engine::get_license_info);
 	ClassDB::bind_method(D_METHOD("get_license_text"), &_Engine::get_license_text);
+	*/
 
 	ClassDB::bind_method(D_METHOD("is_in_physics_frame"), &_Engine::is_in_physics_frame);
 

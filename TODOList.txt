@@ -1,0 +1,54 @@
+[v] core - 引擎核心
+[v]     io - 输入输出
+[v]     math - 数学相关
+[v]     os - 操作系统接口
+[ ] drivers - 系统相关
+[v]     dummy - 空渲染器，用于服务器？
+[v]     gl_context - 在 haiku, osx, windows, x11 四个平台下引入 glad
+[v]     gles_common - gles环境公共代码
+[*]     gles2 - gles2渲染器（shader未处理）
+[*]     gles3 - gles3渲染器（shader未处理）
+[x]     png - png加载器，依赖thirdparty/libpng
+[v]     unix - unix环境接口，mntnet未处理
+[v]     windows - windows文件接口
+[x] main - 程序入口
+[ ]     tests - 测试代码
+[ ] moudles - 功能模块
+[v]     bmp - bmp图片加载器
+[*]     bullet - bullet物理引擎接口代码，依赖thirdparty/bullet
+[*]     csg - 构造实体几何
+[ ]     cvtt - 依赖thirdparty/cvtt
+[v]     dds
+[ ]     fbx - 依赖thirdparty/zlib
+[ ]     freetype - 依赖thirdparty/freetype
+[ ]     gdscript
+[ ]     gridmap
+[v]     hdr - HDR图片加载器
+[*]     jpg - JPG图片加载，依赖thirdparty/jpeg-compressor
+[v]     jsonrpc
+[v]     pvr - PVR格式纹理资源加载器，依赖thirdparty/pvrtccompressor
+[x]     regex - 使用PCRE2的正则表达式库，依赖thirdparty/pcre2
+[v]     squish - 图片压缩解压库，依赖thirdparty/squish
+[v]     svg - SVG格式图片加载器，依赖thirdparty/nanosvg
+[v]     tga - TGA格式图片加载器
+[x]     vhacd - 模型凸包分解库VHACD的封装，依赖thirdparty/vhacd
+[*]     visual_script - 可视化脚本实现
+[ ] platform - 各个平台相关代码封装
+[ ]     windows - windows平台相关实现
+[ ] scene - 场景管理
+[v]     2d
+[v]     3d
+[v]     animation - 动画，依赖thirdparty/misc/easing_equations.cpp
+[v]     debugger - 调试器
+[v]     gui
+[v]     main - 场景管理代码
+[ ]     resource - 资源管理，依赖thirdparty/misc/mikktspace.c
+[x]         default_theme - 默认主题资源和代码
+[ ] servers - 相机、物理和渲染
+[ ]     camera - 相机
+[ ]     physics - 3D物理
+[ ]     physics_2d - 2D物理
+[ ]     visual - 渲染模块
+[ ] thirdparty - 第三方库代码
+[ ]     bullet - Bullet物理引擎接口代码
+[ ]

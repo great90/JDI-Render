@@ -1,4 +1,4 @@
-/*************************************************************************/
+﻿/*************************************************************************/
 /*  class_db.cpp                                                         */
 /*************************************************************************/
 /*                       This file is part of:                           */
@@ -32,7 +32,6 @@
 
 #include "core/engine.h"
 #include "core/os/mutex.h"
-#include "core/version.h"
 
 #define OBJTYPE_RLOCK RWLockRead _rw_lockr_(lock);
 #define OBJTYPE_WLOCK RWLockWrite _rw_lockw_(lock);

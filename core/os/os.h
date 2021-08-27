@@ -192,8 +192,10 @@ public:
 	virtual const char *get_video_driver_name(int p_driver) const;
 	virtual int get_current_video_driver() const = 0;
 
+	/*
 	virtual int get_audio_driver_count() const;
 	virtual const char *get_audio_driver_name(int p_driver) const;
+	*/
 
 	virtual int get_tablet_driver_count() const { return 0; };
 	virtual String get_tablet_driver_name(int p_driver) const { return ""; };

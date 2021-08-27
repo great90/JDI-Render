@@ -30,9 +30,9 @@
 
 #include "spring_arm.h"
 #include "core/engine.h"
-#include "scene/3d/collision_object.h"
-#include "scene/resources/sphere_shape.h"
-#include "servers/physics_server.h"
+//#include "scene/3d/collision_object.h"
+//#include "scene/resources/sphere_shape.h"
+//#include "servers/physics_server.h"
 
 SpringArm::SpringArm() :
 		spring_length(1),
@@ -144,7 +144,7 @@ void SpringArm::process_spring() {
 	Vector3 motion;
 	const Vector3 cast_direction(get_global_transform().basis.xform(Vector3(0, 0, 1)));
 
-	if (shape.is_null()) {
+	/*if (shape.is_null()) {
 		motion = Vector3(cast_direction * (spring_length));
 		PhysicsDirectSpaceState::RayResult r;
 		bool intersected = get_world()->get_direct_space_state()->intersect_ray(get_global_transform().origin, get_global_transform().origin + motion, r, excluded_objects, mask);
@@ -156,7 +156,7 @@ void SpringArm::process_spring() {
 	} else {
 		motion = Vector3(cast_direction * spring_length);
 		get_world()->get_direct_space_state()->cast_motion(shape->get_rid(), get_global_transform(), motion, 0, motion_delta, motion_delta_unsafe, excluded_objects, mask);
-	}
+	}*/
 
 	current_spring_length = spring_length * motion_delta;
 	Transform childs_transform;

@@ -1,4 +1,4 @@
-/*************************************************************************/
+﻿/*************************************************************************/
 /*  resource_format_binary.cpp                                           */
 /*************************************************************************/
 /*                       This file is part of:                           */
@@ -35,7 +35,7 @@
 #include "core/io/marshalls.h"
 #include "core/os/dir_access.h"
 #include "core/project_settings.h"
-#include "core/version.h"
+#include "core/math/vector2.h"
 
 //#define print_bl(m_what) print_line(m_what)
 #define print_bl(m_what) (void)(m_what)
@@ -873,7 +873,7 @@ void ResourceInteractiveLoaderBinary::open(FileAccess *p_f) {
 	print_bl("minor: " + itos(ver_minor));
 	print_bl("format: " + itos(ver_format));
 
-	if (ver_format > FORMAT_VERSION || ver_major > VERSION_MAJOR) {
+	if (ver_format > FORMAT_VERSION/* || ver_major > VERSION_MAJOR*/) {
 
 		f->close();
 		ERR_FAIL_MSG(vformat("File '%s' can't be loaded, as it uses a format version (%d) or engine version (%d.%d) which are not supported by your engine version (%s).",
@@ -964,7 +964,7 @@ String ResourceInteractiveLoaderBinary::recognize(FileAccess *p_f) {
 	f->get_32(); // ver_minor
 	uint32_t ver_format = f->get_32();
 
-	if (ver_format > FORMAT_VERSION || ver_major > VERSION_MAJOR) {
+	if (ver_format > FORMAT_VERSION/* || ver_major > VERSION_MAJOR*/) {
 
 		f->close();
 		return "";
@@ -1156,7 +1156,7 @@ Error ResourceFormatLoaderBinary::rename_dependencies(const String &p_path, cons
 		return ResourceFormatSaverBinary::singleton->save(p_path, res);
 	}
 
-	if (ver_format > FORMAT_VERSION || ver_major > VERSION_MAJOR) {
+	if (ver_format > FORMAT_VERSION/* || ver_major > VERSION_MAJOR*/) {
 
 		memdelete(f);
 		memdelete(fw);
@@ -1798,8 +1798,8 @@ Error ResourceFormatSaverBinaryInstance::save(const String &p_path, const RES &p
 		f->store_32(0);
 
 	f->store_32(0); //64 bits file, false for now
-	f->store_32(VERSION_MAJOR);
-	f->store_32(VERSION_MINOR);
+	/*f->store_32(VERSION_MAJOR);
+	f->store_32(VERSION_MINOR);*/
 	f->store_32(FORMAT_VERSION);
 
 	if (f->get_error() != OK && f->get_error() != ERR_FILE_EOF) {

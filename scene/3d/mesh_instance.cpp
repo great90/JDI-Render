@@ -30,10 +30,10 @@
 
 #include "mesh_instance.h"
 
-#include "collision_shape.h"
+//#include "collision_shape.h"
 #include "core/core_string_names.h"
 #include "core/project_settings.h"
-#include "physics_body.h"
+//#include "physics_body.h"
 #include "scene/resources/material.h"
 #include "scene/scene_string_names.h"
 #include "servers/visual/visual_server_globals.h"
@@ -554,20 +554,21 @@ Node *MeshInstance::create_trimesh_collision_node() {
 	if (mesh.is_null())
 		return NULL;
 
-	Ref<Shape> shape = mesh->create_trimesh_shape();
+	/*Ref<Shape> shape = mesh->create_trimesh_shape();
 	if (shape.is_null())
 		return NULL;
-
+	
 	StaticBody *static_body = memnew(StaticBody);
 	CollisionShape *cshape = memnew(CollisionShape);
 	cshape->set_shape(shape);
 	static_body->add_child(cshape);
-	return static_body;
+	return static_body;*/
+	return NULL;
 }
 
 void MeshInstance::create_trimesh_collision() {
 
-	StaticBody *static_body = Object::cast_to<StaticBody>(create_trimesh_collision_node());
+	/*StaticBody *static_body = Object::cast_to<StaticBody>(create_trimesh_collision_node());
 	ERR_FAIL_COND(!static_body);
 	static_body->set_name(String(get_name()) + "_col");
 
@@ -576,7 +577,7 @@ void MeshInstance::create_trimesh_collision() {
 		CollisionShape *cshape = Object::cast_to<CollisionShape>(static_body->get_child(0));
 		static_body->set_owner(get_owner());
 		cshape->set_owner(get_owner());
-	}
+	}*/
 }
 
 Node *MeshInstance::create_convex_collision_node() {
@@ -584,7 +585,7 @@ Node *MeshInstance::create_convex_collision_node() {
 	if (mesh.is_null())
 		return NULL;
 
-	Ref<Shape> shape = mesh->create_convex_shape();
+	/*Ref<Shape> shape = mesh->create_convex_shape();
 	if (shape.is_null())
 		return NULL;
 
@@ -592,12 +593,13 @@ Node *MeshInstance::create_convex_collision_node() {
 	CollisionShape *cshape = memnew(CollisionShape);
 	cshape->set_shape(shape);
 	static_body->add_child(cshape);
-	return static_body;
+	return static_body;*/
+	return NULL;
 }
 
 void MeshInstance::create_convex_collision() {
 
-	StaticBody *static_body = Object::cast_to<StaticBody>(create_convex_collision_node());
+	/*StaticBody *static_body = Object::cast_to<StaticBody>(create_convex_collision_node());
 	ERR_FAIL_COND(!static_body);
 	static_body->set_name(String(get_name()) + "_col");
 
@@ -606,7 +608,7 @@ void MeshInstance::create_convex_collision() {
 		CollisionShape *cshape = Object::cast_to<CollisionShape>(static_body->get_child(0));
 		static_body->set_owner(get_owner());
 		cshape->set_owner(get_owner());
-	}
+	}*/
 }
 
 void MeshInstance::_notification(int p_what) {

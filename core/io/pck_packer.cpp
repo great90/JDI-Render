@@ -1,4 +1,4 @@
-/*************************************************************************/
+﻿/*************************************************************************/
 /*  pck_packer.cpp                                                       */
 /*************************************************************************/
 /*                       This file is part of:                           */
@@ -32,7 +32,6 @@
 
 #include "core/io/file_access_pack.h" // PACK_HEADER_MAGIC, PACK_FORMAT_VERSION
 #include "core/os/file_access.h"
-#include "core/version.h"
 
 static uint64_t _align(uint64_t p_n, int p_alignment) {
 
@@ -75,9 +74,9 @@ Error PCKPacker::pck_start(const String &p_file, int p_alignment) {
 
 	file->store_32(PACK_HEADER_MAGIC);
 	file->store_32(PACK_FORMAT_VERSION);
-	file->store_32(VERSION_MAJOR);
+	/*file->store_32(VERSION_MAJOR);
 	file->store_32(VERSION_MINOR);
-	file->store_32(VERSION_PATCH);
+	file->store_32(VERSION_PATCH);*/
 
 	for (int i = 0; i < 16; i++) {
 

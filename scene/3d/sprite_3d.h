@@ -31,8 +31,10 @@
 #ifndef SPRITE_3D_H
 #define SPRITE_3D_H
 
-#include "scene/2d/animated_sprite.h"
+//#include "scene/2d/animated_sprite.h"
 #include "scene/3d/visual_instance.h"
+//#include "scene/sprite_frame.h"
+#include "servers/visual_server.h"
 
 class SpriteBase3D : public GeometryInstance {
 
@@ -203,7 +205,7 @@ class AnimatedSprite3D : public SpriteBase3D {
 
 	GDCLASS(AnimatedSprite3D, SpriteBase3D);
 
-	Ref<SpriteFrames> frames;
+	//Ref<SpriteFrames> frames;
 	bool playing;
 	StringName animation;
 	int frame;
@@ -230,8 +232,8 @@ protected:
 	virtual void _validate_property(PropertyInfo &property) const;
 
 public:
-	void set_sprite_frames(const Ref<SpriteFrames> &p_frames);
-	Ref<SpriteFrames> get_sprite_frames() const;
+	/*void set_sprite_frames(const Ref<SpriteFrames> &p_frames);
+	Ref<SpriteFrames> get_sprite_frames() const;*/
 
 	void play(const StringName &p_animation = StringName());
 	void stop();

@@ -1,4 +1,4 @@
-/*************************************************************************/
+﻿/*************************************************************************/
 /*  method_bind.h                                                        */
 /*************************************************************************/
 /*                       This file is part of:                           */
@@ -141,14 +141,14 @@ struct VariantObjectClassChecker<Node *> {
 	}
 };
 
-template <>
+/*template <>
 struct VariantObjectClassChecker<Control *> {
 	static _FORCE_INLINE_ bool check(const Variant &p_variant) {
 		Object *obj = p_variant;
 		Control *control = p_variant;
 		return control || !obj;
 	}
-};
+};*/
 
 #define CHECK_ARG(m_arg)                                                            \
 	if ((m_arg - 1) < p_arg_count) {                                                \

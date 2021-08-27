@@ -40,19 +40,19 @@
 #include "core/func_ref.h"
 #include "core/input_map.h"
 #include "core/io/config_file.h"
-#include "core/io/dtls_server.h"
+//#include "core/io/dtls_server.h"
 #include "core/io/http_client.h"
 #include "core/io/image_loader.h"
 #include "core/io/marshalls.h"
 #include "core/io/multiplayer_api.h"
 #include "core/io/networked_multiplayer_peer.h"
 #include "core/io/packet_peer.h"
-#include "core/io/packet_peer_dtls.h"
+//#include "core/io/packet_peer_dtls.h"
 #include "core/io/packet_peer_udp.h"
 #include "core/io/pck_packer.h"
 #include "core/io/resource_format_binary.h"
 #include "core/io/resource_importer.h"
-#include "core/io/stream_peer_ssl.h"
+//#include "core/io/stream_peer_ssl.h"
 #include "core/io/tcp_server.h"
 #include "core/io/translation_loader_po.h"
 #include "core/io/udp_server.h"
@@ -75,8 +75,8 @@ static Ref<ResourceFormatLoaderBinary> resource_loader_binary;
 static Ref<ResourceFormatImporter> resource_format_importer;
 static Ref<ResourceFormatLoaderImage> resource_format_image;
 static Ref<TranslationLoaderPO> resource_format_po;
-static Ref<ResourceFormatSaverCrypto> resource_format_saver_crypto;
-static Ref<ResourceFormatLoaderCrypto> resource_format_loader_crypto;
+//static Ref<ResourceFormatSaverCrypto> resource_format_saver_crypto;
+//static Ref<ResourceFormatLoaderCrypto> resource_format_loader_crypto;
 
 static _ResourceLoader *_resource_loader = NULL;
 static _ResourceSaver *_resource_saver = NULL;
@@ -154,20 +154,20 @@ void register_core_types() {
 	ClassDB::register_class<TCP_Server>();
 	ClassDB::register_class<PacketPeerUDP>();
 	ClassDB::register_class<UDPServer>();
-	ClassDB::register_custom_instance_class<PacketPeerDTLS>();
-	ClassDB::register_custom_instance_class<DTLSServer>();
+	//ClassDB::register_custom_instance_class<PacketPeerDTLS>();
+	//ClassDB::register_custom_instance_class<DTLSServer>();
 
 	// Crypto
-	ClassDB::register_class<HashingContext>();
-	ClassDB::register_custom_instance_class<X509Certificate>();
-	ClassDB::register_custom_instance_class<CryptoKey>();
-	ClassDB::register_custom_instance_class<Crypto>();
-	ClassDB::register_custom_instance_class<StreamPeerSSL>();
+	//ClassDB::register_class<HashingContext>();
+	//ClassDB::register_custom_instance_class<X509Certificate>();
+	//ClassDB::register_custom_instance_class<CryptoKey>();
+	//ClassDB::register_custom_instance_class<Crypto>();
+	//ClassDB::register_custom_instance_class<StreamPeerSSL>();
 
-	resource_format_saver_crypto.instance();
-	ResourceSaver::add_resource_format_saver(resource_format_saver_crypto);
-	resource_format_loader_crypto.instance();
-	ResourceLoader::add_resource_format_loader(resource_format_loader_crypto);
+	//resource_format_saver_crypto.instance();
+	//ResourceSaver::add_resource_format_saver(resource_format_saver_crypto);
+	//resource_format_loader_crypto.instance();
+	//ResourceLoader::add_resource_format_loader(resource_format_loader_crypto);
 
 	ClassDB::register_virtual_class<IP>();
 	ClassDB::register_virtual_class<PacketPeer>();
@@ -292,10 +292,10 @@ void unregister_core_types() {
 	ResourceLoader::remove_resource_format_loader(resource_format_po);
 	resource_format_po.unref();
 
-	ResourceSaver::remove_resource_format_saver(resource_format_saver_crypto);
-	resource_format_saver_crypto.unref();
-	ResourceLoader::remove_resource_format_loader(resource_format_loader_crypto);
-	resource_format_loader_crypto.unref();
+	//ResourceSaver::remove_resource_format_saver(resource_format_saver_crypto);
+	//resource_format_saver_crypto.unref();
+	//ResourceLoader::remove_resource_format_loader(resource_format_loader_crypto);
+	//resource_format_loader_crypto.unref();
 
 	if (ip)
 		memdelete(ip);

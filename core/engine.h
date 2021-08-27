@@ -116,12 +116,12 @@ public:
 	_FORCE_INLINE_ bool is_editor_hint() const { return false; }
 #endif
 
-	Dictionary get_version_info() const;
+	/*Dictionary get_version_info() const;
 	Dictionary get_author_info() const;
 	Array get_copyright_info() const;
 	Dictionary get_donor_info() const;
 	Dictionary get_license_info() const;
-	String get_license_text() const;
+	String get_license_text() const;*/
 
 	Engine();
 	virtual ~Engine() {}

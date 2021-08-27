@@ -225,7 +225,7 @@ public:
 
 	operator Object *() const;
 	operator Node *() const;
-	operator Control *() const;
+	//operator Control *() const;
 
 	operator Dictionary() const;
 	operator Array() const;

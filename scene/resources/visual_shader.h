@@ -32,7 +32,7 @@
 #define VISUAL_SHADER_H
 
 #include "core/string_builder.h"
-#include "scene/gui/control.h"
+//#include "scene/gui/control.h"
 #include "scene/resources/shader.h"
 
 class VisualShaderNodeUniform;
@@ -469,7 +469,7 @@ protected:
 
 	Map<int, Port> input_ports;
 	Map<int, Port> output_ports;
-	Map<int, Control *> controls;
+	//Map<int, Control *> controls;
 
 protected:
 	static void _bind_methods();
@@ -513,8 +513,8 @@ public:
 	int get_free_input_port_id() const;
 	int get_free_output_port_id() const;
 
-	void set_control(Control *p_control, int p_index);
-	Control *get_control(int p_index);
+	/*void set_control(Control *p_control, int p_index);
+	Control *get_control(int p_index);*/
 
 	void set_editable(bool p_enabled);
 	bool is_editable() const;

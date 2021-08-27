@@ -46,28 +46,28 @@
 #include "core/script_debugger_local.h"
 #include "core/script_language.h"
 #include "core/translation.h"
-#include "core/version.h"
-#include "core/version_hash.gen.h"
+//#include "core/version.h"
+//#include "core/version_hash.gen.h"
 #include "drivers/register_driver_types.h"
 #include "main/app_icon.gen.h"
 #include "main/input_default.h"
 #include "main/main_timer_sync.h"
 #include "main/performance.h"
 #include "main/splash.gen.h"
-#include "main/splash_editor.gen.h"
+//#include "main/splash_editor.gen.h"
 #include "main/tests/test_main.h"
 #include "modules/register_module_types.h"
 #include "platform/register_platform_apis.h"
-#include "scene/debugger/script_debugger_remote.h"
+//#include "scene/debugger/script_debugger_remote.h"
 #include "scene/main/scene_tree.h"
 #include "scene/main/viewport.h"
 #include "scene/register_scene_types.h"
 #include "scene/resources/packed_scene.h"
-#include "servers/arvr_server.h"
-#include "servers/audio_server.h"
+//#include "servers/arvr_server.h"
+//#include "servers/audio_server.h"
 #include "servers/camera_server.h"
-#include "servers/physics_2d_server.h"
-#include "servers/physics_server.h"
+//#include "servers/physics_2d_server.h"
+//#include "servers/physics_server.h"
 #include "servers/register_server_types.h"
 
 #ifdef TOOLS_ENABLED
@@ -98,11 +98,11 @@ static ScriptDebugger *script_debugger = NULL;
 static MessageQueue *message_queue = NULL;
 
 // Initialized in setup2()
-static AudioServer *audio_server = NULL;
+//static AudioServer *audio_server = NULL;
 static CameraServer *camera_server = NULL;
-static ARVRServer *arvr_server = NULL;
-static PhysicsServer *physics_server = NULL;
-static Physics2DServer *physics_2d_server = NULL;
+//static ARVRServer *arvr_server = NULL;
+//static PhysicsServer *physics_server = NULL;
+//static Physics2DServer *physics_2d_server = NULL;
 // We error out if setup2() doesn't turn this true
 static bool _start_success = false;
 
@@ -160,17 +160,17 @@ static String unescape_cmdline(const String &p_str) {
 	return p_str.replace("%20", " ");
 }
 
-static String get_full_version_string() {
+/*static String get_full_version_string() {
 	String hash = String(VERSION_HASH);
 	if (hash.length() != 0)
 		hash = "." + hash.left(9);
 	return String(VERSION_FULL_BUILD) + hash;
-}
+}*/
 
 // FIXME: Could maybe be moved to PhysicsServerManager and Physics2DServerManager directly
 // to have less code in main.cpp.
 void initialize_physics() {
-
+/*
 	// This must be defined BEFORE the 3d physics server is created
 	GLOBAL_DEF("physics/3d/godot_physics/use_bvh", true);
 
@@ -190,15 +190,15 @@ void initialize_physics() {
 		physics_2d_server = Physics2DServerManager::new_default_server();
 	}
 	ERR_FAIL_COND(!physics_2d_server);
-	physics_2d_server->init();
+	physics_2d_server->init();*/
 }
 
 void finalize_physics() {
-	physics_server->finish();
+	/*physics_server->finish();
 	memdelete(physics_server);
 
 	physics_2d_server->finish();
-	memdelete(physics_2d_server);
+	memdelete(physics_2d_server);*/
 }
 
 //#define DEBUG_INIT
@@ -210,7 +210,7 @@ void finalize_physics() {
 
 void Main::print_help(const char *p_binary) {
 
-	print_line(String(VERSION_NAME) + " v" + get_full_version_string() + " - " + String(VERSION_WEBSITE));
+	//print_line(String(VERSION_NAME) + " v" + get_full_version_string() + " - " + String(VERSION_WEBSITE));
 	OS::get_singleton()->print("Free and open source software under the terms of the MIT license.\n");
 	OS::get_singleton()->print("(c) 2007-2021 Juan Linietsky, Ariel Manzur.\n");
 	OS::get_singleton()->print("(c) 2014-2021 Godot Engine contributors.\n");
@@ -238,6 +238,7 @@ void Main::print_help(const char *p_binary) {
 	OS::get_singleton()->print("  --render-thread <mode>           Render thread mode ('unsafe', 'safe', 'separate').\n");
 	OS::get_singleton()->print("  --remote-fs <address>            Remote filesystem (<host/IP>[:<port>] address).\n");
 	OS::get_singleton()->print("  --remote-fs-password <password>  Password for remote filesystem.\n");
+	/*
 	OS::get_singleton()->print("  --audio-driver <driver>          Audio driver (");
 	for (int i = 0; i < OS::get_singleton()->get_audio_driver_count(); i++) {
 		if (i != 0)
@@ -245,6 +246,7 @@ void Main::print_help(const char *p_binary) {
 		OS::get_singleton()->print("'%s'", OS::get_singleton()->get_audio_driver_name(i));
 	}
 	OS::get_singleton()->print(").\n");
+	*/
 	OS::get_singleton()->print("  --video-driver <driver>          Video driver (");
 	for (int i = 0; i < OS::get_singleton()->get_video_driver_count(); i++) {
 		if (i != 0)
@@ -457,7 +459,7 @@ Error Main::setup(const char *execpath, int argc, char *argv[], bool p_second_ph
 
 		} else if (I->get() == "--version") {
 
-			print_line(get_full_version_string());
+			//print_line(get_full_version_string());
 			goto error;
 
 		} else if (I->get() == "-v" || I->get() == "--verbose") { // verbose output
@@ -467,6 +469,7 @@ Error Main::setup(const char *execpath, int argc, char *argv[], bool p_second_ph
 
 			quiet_stdout = true;
 
+		/*
 		} else if (I->get() == "--audio-driver") { // audio driver
 
 			if (I->next()) {
@@ -503,6 +506,7 @@ Error Main::setup(const char *execpath, int argc, char *argv[], bool p_second_ph
 				OS::get_singleton()->print("Missing audio driver argument, aborting.\n");
 				goto error;
 			}
+			*/
 
 		} else if (I->get() == "--video-driver") { // force video driver
 
@@ -919,7 +923,7 @@ Error Main::setup(const char *execpath, int argc, char *argv[], bool p_second_ph
 
 	if (debug_mode == "remote") {
 
-		ScriptDebuggerRemote *sdr = memnew(ScriptDebuggerRemote);
+		/*ScriptDebuggerRemote *sdr = memnew(ScriptDebuggerRemote);
 		uint16_t debug_port = 6007;
 		if (debug_host.find(":") != -1) {
 			int sep_pos = debug_host.find_last(":");
@@ -935,7 +939,7 @@ Error Main::setup(const char *execpath, int argc, char *argv[], bool p_second_ph
 		} else {
 			script_debugger = sdr;
 			sdr->set_allow_focus_steal_pid(allow_focus_steal_pid);
-		}
+		}*/
 	} else if (debug_mode == "local") {
 
 		script_debugger = memnew(ScriptDebuggerLocal);
@@ -1159,7 +1163,7 @@ Error Main::setup(const char *execpath, int argc, char *argv[], bool p_second_ph
 		video_driver_idx = 0;
 	}
 
-	if (audio_driver == "") { // specified in project.godot
+	/*if (audio_driver == "") { // specified in project.godot
 		audio_driver = GLOBAL_DEF_RST("audio/driver", OS::get_singleton()->get_audio_driver_name(0));
 	}
 
@@ -1170,7 +1174,7 @@ Error Main::setup(const char *execpath, int argc, char *argv[], bool p_second_ph
 			audio_driver_idx = i;
 			break;
 		}
-	}
+	}*/
 
 	if (audio_driver_idx < 0) {
 		audio_driver_idx = 0;
@@ -1276,7 +1280,7 @@ error:
 Error Main::setup2(Thread::ID p_main_tid_override) {
 
 	// Print engine name and version
-	print_line(String(VERSION_NAME) + " v" + get_full_version_string() + " - " + String(VERSION_WEBSITE));
+	//print_line(String(VERSION_NAME) + " v" + get_full_version_string() + " - " + String(VERSION_WEBSITE));
 
 #if !defined(NO_THREADS)
 	if (p_main_tid_override) {
@@ -1297,11 +1301,11 @@ Error Main::setup2(Thread::ID p_main_tid_override) {
 
 	// right moment to create and initialize the audio server
 
-	audio_server = memnew(AudioServer);
-	audio_server->init();
+	//audio_server = memnew(AudioServer);
+	//audio_server->init();
 
 	// also init our arvr_server from here
-	arvr_server = memnew(ARVRServer);
+	//arvr_server = memnew(ARVRServer);
 
 	// and finally setup this property under visual_server
 	VisualServer::get_singleton()->set_render_loop_enabled(!disable_render_loop);
@@ -1465,7 +1469,7 @@ Error Main::setup2(Thread::ID p_main_tid_override) {
 	// This loads global classes, so it must happen before custom loaders and savers are registered
 	ScriptServer::init_languages();
 
-	audio_server->load_default_bus_layout();
+	//audio_server->load_default_bus_layout();
 
 	if (use_debug_profiler && script_debugger) {
 		script_debugger->profiling_start();
@@ -1725,11 +1729,11 @@ bool Main::start() {
 
 		if (!project_manager && !editor) { // game
 			if (game_path != "" || script != "") {
-				if (script_debugger && script_debugger->is_remote()) {
+				/*if (script_debugger && script_debugger->is_remote()) {
 					ScriptDebuggerRemote *remote_debugger = static_cast<ScriptDebuggerRemote *>(script_debugger);
 
 					remote_debugger->set_scene_tree(sml);
-				}
+				}*/
 
 				//autoload
 				List<PropertyInfo> props;
@@ -1950,7 +1954,7 @@ bool Main::start() {
 		if (!project_manager && !editor) { // game
 
 			// Load SSL Certificates from Project Settings (or builtin).
-			Crypto::load_default_certificates(GLOBAL_DEF("network/ssl/certificates", ""));
+			//Crypto::load_default_certificates(GLOBAL_DEF("network/ssl/certificates", ""));
 
 			if (game_path != "") {
 				Node *scene = NULL;
@@ -2007,7 +2011,7 @@ bool Main::start() {
 			OS::get_singleton()->set_console_visible(!hide_console);
 
 			// Load SSL Certificates from Editor Settings (or builtin)
-			Crypto::load_default_certificates(EditorSettings::get_singleton()->get_setting("network/ssl/editor_ssl_certificates").operator String());
+			//Crypto::load_default_certificates(EditorSettings::get_singleton()->get_setting("network/ssl/editor_ssl_certificates").operator String());
 		}
 #endif
 	}
@@ -2092,10 +2096,10 @@ bool Main::iteration() {
 
 		uint64_t physics_begin = OS::get_singleton()->get_ticks_usec();
 
-		PhysicsServer::get_singleton()->flush_queries();
+		/*PhysicsServer::get_singleton()->flush_queries();
 
 		Physics2DServer::get_singleton()->sync();
-		Physics2DServer::get_singleton()->flush_queries();
+		Physics2DServer::get_singleton()->flush_queries();*/
 
 		if (OS::get_singleton()->get_main_loop()->iteration(frame_slice * time_scale)) {
 			exit = true;
@@ -2104,10 +2108,10 @@ bool Main::iteration() {
 
 		message_queue->flush();
 
-		PhysicsServer::get_singleton()->step(frame_slice * time_scale);
+		/*PhysicsServer::get_singleton()->step(frame_slice * time_scale);
 
 		Physics2DServer::get_singleton()->end_sync();
-		Physics2DServer::get_singleton()->step(frame_slice * time_scale);
+		Physics2DServer::get_singleton()->step(frame_slice * time_scale);*/
 
 		message_queue->flush();
 
@@ -2149,7 +2153,7 @@ bool Main::iteration() {
 		ScriptServer::get_language(i)->frame();
 	}
 
-	AudioServer::get_singleton()->update();
+	//AudioServer::get_singleton()->update();
 
 	if (script_debugger) {
 		if (script_debugger->is_profiling()) {
@@ -2256,10 +2260,10 @@ void Main::cleanup(bool p_force) {
 	EditorNode::unregister_editor_types();
 #endif
 
-	if (arvr_server) {
+	/*if (arvr_server) {
 		// cleanup now before we pull the rug from underneath...
 		memdelete(arvr_server);
-	}
+	}*/
 
 	ImageLoader::cleanup();
 
@@ -2268,11 +2272,6 @@ void Main::cleanup(bool p_force) {
 	unregister_platform_apis();
 	unregister_scene_types();
 	unregister_server_types();
-
-	if (audio_server) {
-		audio_server->finish();
-		memdelete(audio_server);
-	}
 
 	if (camera_server) {
 		memdelete(camera_server);

@@ -31,6 +31,7 @@
 #ifndef RANDOM_PCG_H
 #define RANDOM_PCG_H
 
+#include <cstdint>
 #include <math.h>
 
 #include "core/math/math_defs.h"

@@ -32,8 +32,8 @@
 
 #include "core/engine.h"
 #include "scene/3d/camera.h"
-#include "scene/3d/physics_body.h"
-#include "scene/animation/animation_player.h"
+//#include "scene/3d/physics_body.h"
+//#include "scene/animation/animation_player.h"
 #include "scene/scene_string_names.h"
 
 void VisibilityNotifier::_enter_camera(Camera *p_camera) {
@@ -153,7 +153,7 @@ void VisibilityEnabler::_find_nodes(Node *p_node) {
 	bool add = false;
 	Variant meta;
 
-	{
+	/*{
 		RigidBody *rb = Object::cast_to<RigidBody>(p_node);
 		if (rb && ((rb->get_mode() == RigidBody::MODE_CHARACTER || rb->get_mode() == RigidBody::MODE_RIGID))) {
 
@@ -167,7 +167,7 @@ void VisibilityEnabler::_find_nodes(Node *p_node) {
 		if (ap) {
 			add = true;
 		}
-	}
+	}*/
 
 	if (add) {
 
@@ -220,7 +220,7 @@ void VisibilityEnabler::_change_node_state(Node *p_node, bool p_enabled) {
 
 	ERR_FAIL_COND(!nodes.has(p_node));
 
-	if (enabler[ENABLER_FREEZE_BODIES]) {
+	/*if (enabler[ENABLER_FREEZE_BODIES]) {
 		RigidBody *rb = Object::cast_to<RigidBody>(p_node);
 		if (rb)
 
@@ -234,7 +234,7 @@ void VisibilityEnabler::_change_node_state(Node *p_node, bool p_enabled) {
 
 			ap->set_active(p_enabled);
 		}
-	}
+	}*/
 }
 
 void VisibilityEnabler::_node_removed(Node *p_node) {

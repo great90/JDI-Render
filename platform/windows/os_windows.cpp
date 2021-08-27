@@ -35,7 +35,7 @@
 
 #include "core/io/marshalls.h"
 #include "core/math/geometry.h"
-#include "core/version_generated.gen.h"
+//#include "core/version_generated.gen.h"
 #include "drivers/gles2/rasterizer_gles2.h"
 #include "drivers/gles3/rasterizer_gles3.h"
 #include "drivers/windows/dir_access_windows.h"
@@ -43,7 +43,7 @@
 #include "joypad_windows.h"
 #include "lang_table.h"
 #include "main/main.h"
-#include "servers/audio_server.h"
+//#include "servers/audio_server.h"
 #include "servers/visual/visual_server_raster.h"
 #include "servers/visual/visual_server_wrap_mt.h"
 #include "windows_terminal_logger.h"
@@ -54,6 +54,7 @@
 #include <process.h>
 #include <regstr.h>
 #include <shlobj.h>
+#include "scene/resources/texture.h"
 
 static const WORD MAX_CONSOLE_LINES = 1500;
 
@@ -1667,7 +1668,7 @@ Error OS_Windows::initialize(const VideoMode &p_desired, int p_video_driver, int
 
 	power_manager = memnew(PowerWindows);
 
-	AudioDriverManager::initialize(p_audio_driver);
+	//AudioDriverManager::initialize(p_audio_driver);
 
 	TRACKMOUSEEVENT tme;
 	tme.cbSize = sizeof(TRACKMOUSEEVENT);
@@ -1808,7 +1809,7 @@ void OS_Windows::set_main_loop(MainLoop *p_main_loop) {
 void OS_Windows::finalize() {
 
 #ifdef WINMIDI_ENABLED
-	driver_midi.close();
+	//driver_midi.close();
 #endif
 
 	if (main_loop)
@@ -3483,7 +3484,7 @@ String OS_Windows::get_cache_path() const {
 // Get properly capitalized engine name for system paths
 String OS_Windows::get_godot_dir_name() const {
 
-	return String(VERSION_SHORT_NAME).capitalize();
+	return String("godot").capitalize();
 }
 
 String OS_Windows::get_system_dir(SystemDir p_dir, bool p_shared_storage) const {
@@ -3780,7 +3781,7 @@ OS_Windows::OS_Windows(HINSTANCE _hInstance) {
 	user_proc = NULL;
 
 #ifdef WASAPI_ENABLED
-	AudioDriverManager::add_driver(&driver_wasapi);
+	//AudioDriverManager::add_driver(&driver_wasapi);
 #endif
 #ifdef XAUDIO2_ENABLED
 	AudioDriverManager::add_driver(&driver_xaudio2);

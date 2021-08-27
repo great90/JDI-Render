@@ -30,7 +30,7 @@
 
 #include "camera.h"
 
-#include "collision_object.h"
+//#include "collision_object.h"
 #include "core/engine.h"
 #include "core/math/camera_matrix.h"
 #include "scene/resources/material.h"
@@ -742,8 +742,8 @@ void ClippedCamera::_notification(int p_what) {
 			return;
 		}
 
-		PhysicsDirectSpaceState *dspace = get_world()->get_direct_space_state();
-		ERR_FAIL_COND(!dspace); // most likely physics set to threads
+		//PhysicsDirectSpaceState *dspace = get_world()->get_direct_space_state();
+		//ERR_FAIL_COND(!dspace); // most likely physics set to threads
 
 		Vector3 cam_fw = -get_global_transform().basis.get_axis(Vector3::AXIS_Z).normalized();
 		Vector3 cam_pos = get_global_transform().origin;
@@ -773,7 +773,7 @@ void ClippedCamera::_notification(int p_what) {
 			}
 
 			if (!all_equal) {
-				PhysicsServer::get_singleton()->shape_set_data(pyramid_shape, local_points);
+				//PhysicsServer::get_singleton()->shape_set_data(pyramid_shape, local_points);
 				points = local_points;
 			}
 		}
@@ -783,9 +783,9 @@ void ClippedCamera::_notification(int p_what) {
 		xf.orthonormalize();
 
 		float closest_safe = 1.0f, closest_unsafe = 1.0f;
-		if (dspace->cast_motion(pyramid_shape, xf, cam_pos - ray_from, margin, closest_safe, closest_unsafe, exclude, collision_mask, clip_to_bodies, clip_to_areas)) {
-			clip_offset = cam_pos.distance_to(ray_from + (cam_pos - ray_from) * closest_safe);
-		}
+		//if (dspace->cast_motion(pyramid_shape, xf, cam_pos - ray_from, margin, closest_safe, closest_unsafe, exclude, collision_mask, clip_to_bodies, clip_to_areas)) {
+		//	clip_offset = cam_pos.distance_to(ray_from + (cam_pos - ray_from) * closest_safe);
+		//}
 
 		_update_camera();
 	}
@@ -820,7 +820,7 @@ bool ClippedCamera::get_collision_mask_bit(int p_bit) const {
 	return get_collision_mask() & (1 << p_bit);
 }
 
-void ClippedCamera::add_exception_rid(const RID &p_rid) {
+/*void ClippedCamera::add_exception_rid(const RID &p_rid) {
 
 	exclude.insert(p_rid);
 }
@@ -851,7 +851,7 @@ void ClippedCamera::remove_exception(const Object *p_object) {
 void ClippedCamera::clear_exceptions() {
 
 	exclude.clear();
-}
+}*/
 
 float ClippedCamera::get_clip_offset() const {
 
@@ -892,11 +892,13 @@ void ClippedCamera::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("set_collision_mask_bit", "bit", "value"), &ClippedCamera::set_collision_mask_bit);
 	ClassDB::bind_method(D_METHOD("get_collision_mask_bit", "bit"), &ClippedCamera::get_collision_mask_bit);
 
+	/*
 	ClassDB::bind_method(D_METHOD("add_exception_rid", "rid"), &ClippedCamera::add_exception_rid);
 	ClassDB::bind_method(D_METHOD("add_exception", "node"), &ClippedCamera::add_exception);
 
 	ClassDB::bind_method(D_METHOD("remove_exception_rid", "rid"), &ClippedCamera::remove_exception_rid);
 	ClassDB::bind_method(D_METHOD("remove_exception", "node"), &ClippedCamera::remove_exception);
+	*/
 
 	ClassDB::bind_method(D_METHOD("set_clip_to_areas", "enable"), &ClippedCamera::set_clip_to_areas);
 	ClassDB::bind_method(D_METHOD("is_clip_to_areas_enabled"), &ClippedCamera::is_clip_to_areas_enabled);
@@ -906,7 +908,7 @@ void ClippedCamera::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("set_clip_to_bodies", "enable"), &ClippedCamera::set_clip_to_bodies);
 	ClassDB::bind_method(D_METHOD("is_clip_to_bodies_enabled"), &ClippedCamera::is_clip_to_bodies_enabled);
 
-	ClassDB::bind_method(D_METHOD("clear_exceptions"), &ClippedCamera::clear_exceptions);
+	//ClassDB::bind_method(D_METHOD("clear_exceptions"), &ClippedCamera::clear_exceptions);
 
 	ADD_PROPERTY(PropertyInfo(Variant::REAL, "margin", PROPERTY_HINT_RANGE, "0,32,0.01"), "set_margin", "get_margin");
 	ADD_PROPERTY(PropertyInfo(Variant::INT, "process_mode", PROPERTY_HINT_ENUM, "Physics,Idle"), "set_process_mode", "get_process_mode");
@@ -927,10 +929,10 @@ ClippedCamera::ClippedCamera() {
 	collision_mask = 1;
 	set_notify_local_transform(Engine::get_singleton()->is_editor_hint());
 	points.resize(5);
-	pyramid_shape = PhysicsServer::get_singleton()->shape_create(PhysicsServer::SHAPE_CONVEX_POLYGON);
+	//pyramid_shape = PhysicsServer::get_singleton()->shape_create(PhysicsServer::SHAPE_CONVEX_POLYGON);
 	clip_to_areas = false;
 	clip_to_bodies = true;
 }
 ClippedCamera::~ClippedCamera() {
-	PhysicsServer::get_singleton()->free(pyramid_shape);
+	//PhysicsServer::get_singleton()->free(pyramid_shape);
 }

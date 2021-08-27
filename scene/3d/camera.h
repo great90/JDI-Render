@@ -226,11 +226,11 @@ public:
 	void set_collision_mask_bit(int p_bit, bool p_value);
 	bool get_collision_mask_bit(int p_bit) const;
 
-	void add_exception_rid(const RID &p_rid);
+	/*void add_exception_rid(const RID &p_rid);
 	void add_exception(const Object *p_object);
 	void remove_exception_rid(const RID &p_rid);
 	void remove_exception(const Object *p_object);
-	void clear_exceptions();
+	void clear_exceptions();*/
 
 	float get_clip_offset() const;
 

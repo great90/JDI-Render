@@ -30,7 +30,7 @@
 
 #include "register_types.h"
 
-#include "csg_gizmos.h"
+//#include "csg_gizmos.h"
 #include "csg_shape.h"
 
 void register_csg_types() {
@@ -48,7 +48,7 @@ void register_csg_types() {
 	ClassDB::register_class<CSGCombiner>();
 
 #ifdef TOOLS_ENABLED
-	EditorPlugins::add_by_type<EditorPluginCSG>();
+//	EditorPlugins::add_by_type<EditorPluginCSG>();
 #endif
 #endif
 }

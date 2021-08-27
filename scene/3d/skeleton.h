@@ -38,7 +38,7 @@
 #ifndef _3D_DISABLED
 typedef int BoneId;
 
-class PhysicalBone;
+//class PhysicalBone;
 #endif // _3D_DISABLED
 
 class Skeleton;
@@ -100,8 +100,8 @@ private:
 		Transform global_pose_override;
 
 #ifndef _3D_DISABLED
-		PhysicalBone *physical_bone;
-		PhysicalBone *cache_parent_physical_bone;
+		//PhysicalBone *physical_bone;
+		//PhysicalBone *cache_parent_physical_bone;
 #endif // _3D_DISABLED
 
 		List<uint32_t> nodes_bound;
@@ -114,8 +114,8 @@ private:
 			global_pose_override_amount = 0;
 			global_pose_override_reset = false;
 #ifndef _3D_DISABLED
-			physical_bone = NULL;
-			cache_parent_physical_bone = NULL;
+			//physical_bone = NULL;
+			//cache_parent_physical_bone = NULL;
 #endif // _3D_DISABLED
 		}
 	};
@@ -205,7 +205,7 @@ public:
 
 	Ref<SkinReference> register_skin(const Ref<Skin> &p_skin);
 
-#ifndef _3D_DISABLED
+/*#ifndef _3D_DISABLED
 	// Physical bone API
 
 	void bind_physical_bone_to_bone(int p_bone, PhysicalBone *p_physical_bone);
@@ -224,7 +224,7 @@ public:
 	void physical_bones_start_simulation_on(const Array &p_bones);
 	void physical_bones_add_collision_exception(RID p_exception);
 	void physical_bones_remove_collision_exception(RID p_exception);
-#endif // _3D_DISABLED
+#endif // _3D_DISABLED*/
 
 public:
 	Skeleton();

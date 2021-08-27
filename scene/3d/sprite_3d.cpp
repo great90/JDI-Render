@@ -800,15 +800,15 @@ void AnimatedSprite3D::_draw() {
 		set_base(get_mesh());
 	}
 
-	if (frames.is_null()) {
+	/*if (frames.is_null()) {
 		return;
-	}
+	}*/
 
 	if (frame < 0) {
 		return;
 	}
 
-	if (!frames->has_animation(animation)) {
+	/*if (!frames->has_animation(animation)) {
 		return;
 	}
 
@@ -959,12 +959,12 @@ void AnimatedSprite3D::_draw() {
 	RID mat = SpatialMaterial::get_material_rid_for_2d(get_draw_flag(FLAG_SHADED), get_draw_flag(FLAG_TRANSPARENT), get_draw_flag(FLAG_DOUBLE_SIDED), get_alpha_cut_mode() == ALPHA_CUT_DISCARD, get_alpha_cut_mode() == ALPHA_CUT_OPAQUE_PREPASS, get_billboard_mode() == SpatialMaterial::BILLBOARD_ENABLED, get_billboard_mode() == SpatialMaterial::BILLBOARD_FIXED_Y);
 	VS::get_singleton()->material_set_shader(get_material(), VS::get_singleton()->material_get_shader(mat));
 	VS::get_singleton()->material_set_param(get_material(), "texture_albedo", texture->get_rid());
-	VS::get_singleton()->instance_set_surface_material(get_instance(), 0, get_material());
+	VS::get_singleton()->instance_set_surface_material(get_instance(), 0, get_material());*/
 }
 
 void AnimatedSprite3D::_validate_property(PropertyInfo &property) const {
 
-	if (!frames.is_valid())
+	/*if (!frames.is_valid())
 		return;
 	if (property.name == "animation") {
 
@@ -1001,7 +1001,7 @@ void AnimatedSprite3D::_validate_property(PropertyInfo &property) const {
 			property.hint_string = "0," + itos(frames->get_frame_count(animation) - 1) + ",1";
 		}
 		property.usage |= PROPERTY_USAGE_KEYING_INCREMENTS;
-	}
+	}*/
 }
 
 void AnimatedSprite3D::_notification(int p_what) {
@@ -1009,7 +1009,7 @@ void AnimatedSprite3D::_notification(int p_what) {
 	switch (p_what) {
 		case NOTIFICATION_INTERNAL_PROCESS: {
 
-			if (frames.is_null())
+			/*if (frames.is_null())
 				return;
 			if (!frames->has_animation(animation))
 				return;
@@ -1048,12 +1048,12 @@ void AnimatedSprite3D::_notification(int p_what) {
 				float to_process = MIN(timeout, remaining);
 				remaining -= to_process;
 				timeout -= to_process;
-			}
+			}*/
 		} break;
 	}
 }
 
-void AnimatedSprite3D::set_sprite_frames(const Ref<SpriteFrames> &p_frames) {
+/*void AnimatedSprite3D::set_sprite_frames(const Ref<SpriteFrames> &p_frames) {
 
 	if (frames.is_valid())
 		frames->disconnect("changed", this, "_res_changed");
@@ -1076,11 +1076,11 @@ void AnimatedSprite3D::set_sprite_frames(const Ref<SpriteFrames> &p_frames) {
 Ref<SpriteFrames> AnimatedSprite3D::get_sprite_frames() const {
 
 	return frames;
-}
+}*/
 
 void AnimatedSprite3D::set_frame(int p_frame) {
 
-	if (!frames.is_valid()) {
+	/*if (!frames.is_valid()) {
 		return;
 	}
 
@@ -1088,7 +1088,7 @@ void AnimatedSprite3D::set_frame(int p_frame) {
 		int limit = frames->get_frame_count(animation);
 		if (p_frame >= limit)
 			p_frame = limit - 1;
-	}
+	}*/
 
 	if (p_frame < 0)
 		p_frame = 0;
@@ -1109,13 +1109,13 @@ int AnimatedSprite3D::get_frame() const {
 
 Rect2 AnimatedSprite3D::get_item_rect() const {
 
-	if (!frames.is_valid() || !frames->has_animation(animation) || frame < 0 || frame >= frames->get_frame_count(animation)) {
+	/*if (!frames.is_valid() || !frames->has_animation(animation) || frame < 0 || frame >= frames->get_frame_count(animation)) {
 		return Rect2(0, 0, 1, 1);
-	}
+	}*/
 
 	Ref<Texture> t;
-	if (animation)
-		t = frames->get_frame(animation, frame);
+	//if (animation)
+	//	t = frames->get_frame(animation, frame);
 	if (t.is_null())
 		return Rect2(0, 0, 1, 1);
 	Size2i s = t->get_size();
@@ -1174,14 +1174,14 @@ void AnimatedSprite3D::_reset_timeout() {
 	if (!playing)
 		return;
 
-	if (frames.is_valid() && frames->has_animation(animation)) {
+	/*if (frames.is_valid() && frames->has_animation(animation)) {
 		float speed = frames->get_animation_speed(animation);
 		if (speed > 0) {
 			timeout = 1.0 / speed;
 		} else {
 			timeout = 0;
 		}
-	} else {
+	} else */{
 		timeout = 0;
 	}
 }
@@ -1205,20 +1205,20 @@ StringName AnimatedSprite3D::get_animation() const {
 String AnimatedSprite3D::get_configuration_warning() const {
 
 	String warning = SpriteBase3D::get_configuration_warning();
-	if (frames.is_null()) {
+	/*if (frames.is_null()) {
 		if (warning != String()) {
 			warning += "\n\n";
 		}
 		warning += TTR("A SpriteFrames resource must be created or set in the \"Frames\" property in order for AnimatedSprite3D to display frames.");
-	}
+	}*/
 
 	return warning;
 }
 
 void AnimatedSprite3D::_bind_methods() {
 
-	ClassDB::bind_method(D_METHOD("set_sprite_frames", "sprite_frames"), &AnimatedSprite3D::set_sprite_frames);
-	ClassDB::bind_method(D_METHOD("get_sprite_frames"), &AnimatedSprite3D::get_sprite_frames);
+	//ClassDB::bind_method(D_METHOD("set_sprite_frames", "sprite_frames"), &AnimatedSprite3D::set_sprite_frames);
+	//ClassDB::bind_method(D_METHOD("get_sprite_frames"), &AnimatedSprite3D::get_sprite_frames);
 
 	ClassDB::bind_method(D_METHOD("set_animation", "animation"), &AnimatedSprite3D::set_animation);
 	ClassDB::bind_method(D_METHOD("get_animation"), &AnimatedSprite3D::get_animation);

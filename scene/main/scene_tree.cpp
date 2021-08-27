@@ -40,14 +40,14 @@
 #include "core/project_settings.h"
 #include "main/input_default.h"
 #include "node.h"
-#include "scene/debugger/script_debugger_remote.h"
+//#include "scene/debugger/script_debugger_remote.h"
 #include "scene/resources/dynamic_font.h"
 #include "scene/resources/material.h"
 #include "scene/resources/mesh.h"
 #include "scene/resources/packed_scene.h"
 #include "scene/scene_string_names.h"
-#include "servers/physics_2d_server.h"
-#include "servers/physics_server.h"
+//#include "servers/physics_2d_server.h"
+//#include "servers/physics_server.h"
 #include "viewport.h"
 
 #include <stdio.h>
@@ -498,10 +498,10 @@ bool SceneTree::iteration(float p_time) {
 
 void SceneTree::_update_font_oversampling(float p_ratio) {
 
-	if (use_font_oversampling) {
+	/*if (use_font_oversampling) {
 		DynamicFontAtSize::font_oversampling = p_ratio;
 		DynamicFont::update_oversampling();
-	}
+	}*/
 }
 
 bool SceneTree::idle(float p_time) {
@@ -904,8 +904,8 @@ void SceneTree::set_pause(bool p_enabled) {
 	if (p_enabled == pause)
 		return;
 	pause = p_enabled;
-	PhysicsServer::get_singleton()->set_active(!p_enabled);
-	Physics2DServer::get_singleton()->set_active(!p_enabled);
+	//PhysicsServer::get_singleton()->set_active(!p_enabled);
+	//Physics2DServer::get_singleton()->set_active(!p_enabled);
 	if (get_root())
 		get_root()->propagate_notification(p_enabled ? Node::NOTIFICATION_PAUSED : Node::NOTIFICATION_UNPAUSED);
 }
@@ -2143,14 +2143,14 @@ SceneTree::SceneTree() {
 	last_screen_size = Size2(OS::get_singleton()->get_window_size().width, OS::get_singleton()->get_window_size().height);
 	_update_root_rect();
 
-	if (ScriptDebugger::get_singleton()) {
+	/*if (ScriptDebugger::get_singleton()) {
 		if (ScriptDebugger::get_singleton()->is_remote()) {
 			ScriptDebuggerRemote *remote_debugger = static_cast<ScriptDebuggerRemote *>(ScriptDebugger::get_singleton());
 
 			remote_debugger->set_scene_tree(this);
 		}
 		ScriptDebugger::get_singleton()->set_multiplayer(multiplayer);
-	}
+	}*/
 
 	root->set_physics_object_picking(GLOBAL_DEF("physics/common/enable_object_picking", true));
 

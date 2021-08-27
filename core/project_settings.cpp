@@ -958,7 +958,7 @@ void ProjectSettings::_add_property_info_bind(const Dictionary &p_info) {
 
 void ProjectSettings::set_custom_property_info(const String &p_prop, const PropertyInfo &p_info) {
 
-	ERR_FAIL_COND(!props.has(p_prop));
+	ERR_FAIL_COND_MSG(!props.has(p_prop), p_prop);
 	custom_prop_info[p_prop] = p_info;
 	custom_prop_info[p_prop].name = p_prop;
 }

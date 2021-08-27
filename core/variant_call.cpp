@@ -32,7 +32,6 @@
 
 #include "core/color_names.inc"
 #include "core/core_string_names.h"
-#include "core/crypto/crypto_core.h"
 #include "core/io/compression.h"
 #include "core/object.h"
 #include "core/object_rc.h"

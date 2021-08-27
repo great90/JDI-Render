@@ -30,10 +30,10 @@
 
 #include "ray_cast.h"
 
-#include "collision_object.h"
+//#include "collision_object.h"
 #include "core/engine.h"
 #include "mesh_instance.h"
-#include "servers/physics_server.h"
+//#include "servers/physics_server.h"
 
 void RayCast::set_cast_to(const Vector3 &p_point) {
 
@@ -132,12 +132,12 @@ void RayCast::set_exclude_parent_body(bool p_exclude_parent_body) {
 	if (!is_inside_tree())
 		return;
 
-	if (Object::cast_to<CollisionObject>(get_parent())) {
+	/*if (Object::cast_to<CollisionObject>(get_parent())) {
 		if (exclude_parent_body)
 			exclude.insert(Object::cast_to<CollisionObject>(get_parent())->get_rid());
 		else
 			exclude.erase(Object::cast_to<CollisionObject>(get_parent())->get_rid());
-	}
+	}*/
 }
 
 bool RayCast::get_exclude_parent_body() const {
@@ -161,12 +161,12 @@ void RayCast::_notification(int p_what) {
 				_update_debug_shape();
 			}
 
-			if (Object::cast_to<CollisionObject>(get_parent())) {
+			/*if (Object::cast_to<CollisionObject>(get_parent())) {
 				if (exclude_parent_body)
 					exclude.insert(Object::cast_to<CollisionObject>(get_parent())->get_rid());
 				else
 					exclude.erase(Object::cast_to<CollisionObject>(get_parent())->get_rid());
-			}
+			}*/
 
 		} break;
 		case NOTIFICATION_EXIT_TREE: {
@@ -201,7 +201,7 @@ void RayCast::_update_raycast_state() {
 	Ref<World> w3d = get_world();
 	ERR_FAIL_COND(w3d.is_null());
 
-	PhysicsDirectSpaceState *dss = PhysicsServer::get_singleton()->space_get_direct_state(w3d->get_space());
+	/*PhysicsDirectSpaceState *dss = PhysicsServer::get_singleton()->space_get_direct_state(w3d->get_space());
 	ERR_FAIL_COND(!dss);
 
 	Transform gt = get_global_transform();
@@ -219,7 +219,7 @@ void RayCast::_update_raycast_state() {
 		collision_point = rr.position;
 		collision_normal = rr.normal;
 		against_shape = rr.shape;
-	} else {
+	} else*/ {
 		collided = false;
 		against = 0;
 		against_shape = 0;
@@ -238,10 +238,10 @@ void RayCast::add_exception_rid(const RID &p_rid) {
 void RayCast::add_exception(const Object *p_object) {
 
 	ERR_FAIL_NULL(p_object);
-	const CollisionObject *co = Object::cast_to<CollisionObject>(p_object);
+	/*const CollisionObject *co = Object::cast_to<CollisionObject>(p_object);
 	if (!co)
 		return;
-	add_exception_rid(co->get_rid());
+	add_exception_rid(co->get_rid());*/
 }
 
 void RayCast::remove_exception_rid(const RID &p_rid) {
@@ -252,10 +252,10 @@ void RayCast::remove_exception_rid(const RID &p_rid) {
 void RayCast::remove_exception(const Object *p_object) {
 
 	ERR_FAIL_NULL(p_object);
-	const CollisionObject *co = Object::cast_to<CollisionObject>(p_object);
+	/*const CollisionObject *co = Object::cast_to<CollisionObject>(p_object);
 	if (!co)
 		return;
-	remove_exception_rid(co->get_rid());
+	remove_exception_rid(co->get_rid());*/
 }
 
 void RayCast::clear_exceptions() {

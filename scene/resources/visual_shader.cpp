@@ -2761,14 +2761,14 @@ int VisualShaderNodeGroupBase::get_free_output_port_id() const {
 	return output_ports.size();
 }
 
-void VisualShaderNodeGroupBase::set_control(Control *p_control, int p_index) {
+/*void VisualShaderNodeGroupBase::set_control(Control *p_control, int p_index) {
 	controls[p_index] = p_control;
 }
 
 Control *VisualShaderNodeGroupBase::get_control(int p_index) {
 	ERR_FAIL_COND_V(!controls.has(p_index), NULL);
 	return controls[p_index];
-}
+}*/
 
 void VisualShaderNodeGroupBase::_apply_port_changes() {
 

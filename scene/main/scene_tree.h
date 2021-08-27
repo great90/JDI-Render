@@ -37,7 +37,7 @@
 #include "core/self_list.h"
 #include "scene/resources/mesh.h"
 #include "scene/resources/world.h"
-#include "scene/resources/world_2d.h"
+//#include "scene/resources/world_2d.h"
 
 class PackedScene;
 class Node;

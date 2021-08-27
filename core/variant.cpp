@@ -37,7 +37,7 @@
 #include "core/print_string.h"
 #include "core/resource.h"
 #include "core/variant_parser.h"
-#include "scene/gui/control.h"
+//#include "scene/gui/control.h"
 #include "scene/main/node.h"
 
 String Variant::get_type_name(Variant::Type p_type) {
@@ -1811,6 +1811,7 @@ Variant::operator Node *() const {
 	}
 	return NULL;
 }
+/*
 Variant::operator Control *() const {
 
 	if (type == OBJECT) {
@@ -1823,6 +1824,7 @@ Variant::operator Control *() const {
 	}
 	return NULL;
 }
+*/
 
 Variant::operator Dictionary() const {
 

@@ -33,8 +33,8 @@
 #include "core/crypto/crypto_core.h"
 #include "core/local_vector.h"
 #include "core/pair.h"
-#include "scene/resources/concave_polygon_shape.h"
-#include "scene/resources/convex_polygon_shape.h"
+//#include "scene/resources/concave_polygon_shape.h"
+//#include "scene/resources/convex_polygon_shape.h"
 #include "surface_tool.h"
 
 #include <stdlib.h>
@@ -230,6 +230,7 @@ PoolVector<Face3> Mesh::get_faces() const {
 */
 }
 
+/*
 Ref<Shape> Mesh::create_convex_shape() const {
 
 	PoolVector<Vector3> vertices;
@@ -268,6 +269,7 @@ Ref<Shape> Mesh::create_trimesh_shape() const {
 	shape->set_faces(face_points);
 	return shape;
 }
+*/
 
 Ref<Mesh> Mesh::create_outline(float p_margin) const {
 
@@ -589,10 +591,10 @@ Vector<Ref<Shape> > Mesh::convex_decompose() const {
 			}
 		}
 
-		Ref<ConvexPolygonShape> shape;
+		/*Ref<ConvexPolygonShape> shape;
 		shape.instance();
 		shape->set_points(convex_points);
-		ret.push_back(shape);
+		ret.push_back(shape);*/
 	}
 
 	return ret;
@@ -1453,8 +1455,8 @@ void ArrayMesh::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("surface_find_by_name", "name"), &ArrayMesh::surface_find_by_name);
 	ClassDB::bind_method(D_METHOD("surface_set_name", "surf_idx", "name"), &ArrayMesh::surface_set_name);
 	ClassDB::bind_method(D_METHOD("surface_get_name", "surf_idx"), &ArrayMesh::surface_get_name);
-	ClassDB::bind_method(D_METHOD("create_trimesh_shape"), &ArrayMesh::create_trimesh_shape);
-	ClassDB::bind_method(D_METHOD("create_convex_shape"), &ArrayMesh::create_convex_shape);
+	//ClassDB::bind_method(D_METHOD("create_trimesh_shape"), &ArrayMesh::create_trimesh_shape);
+	//ClassDB::bind_method(D_METHOD("create_convex_shape"), &ArrayMesh::create_convex_shape);
 	ClassDB::bind_method(D_METHOD("create_outline", "margin"), &ArrayMesh::create_outline);
 	ClassDB::bind_method(D_METHOD("regen_normalmaps"), &ArrayMesh::regen_normalmaps);
 	ClassDB::set_method_flags(get_class_static(), _scs_create("regen_normalmaps"), METHOD_FLAGS_DEFAULT | METHOD_FLAG_EDITOR);

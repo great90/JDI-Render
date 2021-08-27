@@ -1,34 +1,4 @@
-/*************************************************************************/
-/*  core_bind.h                                                          */
-/*************************************************************************/
-/*                       This file is part of:                           */
-/*                           GODOT ENGINE                                */
-/*                      https://godotengine.org                          */
-/*************************************************************************/
-/* Copyright (c) 2007-2021 Juan Linietsky, Ariel Manzur.                 */
-/* Copyright (c) 2014-2021 Godot Engine contributors (cf. AUTHORS.md).   */
-/*                                                                       */
-/* Permission is hereby granted, free of charge, to any person obtaining */
-/* a copy of this software and associated documentation files (the       */
-/* "Software"), to deal in the Software without restriction, including   */
-/* without limitation the rights to use, copy, modify, merge, publish,   */
-/* distribute, sublicense, and/or sell copies of the Software, and to    */
-/* permit persons to whom the Software is furnished to do so, subject to */
-/* the following conditions:                                             */
-/*                                                                       */
-/* The above copyright notice and this permission notice shall be        */
-/* included in all copies or substantial portions of the Software.       */
-/*                                                                       */
-/* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,       */
-/* EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF    */
-/* MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.*/
-/* IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY  */
-/* CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,  */
-/* TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE     */
-/* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                */
-/*************************************************************************/
-
-#ifndef CORE_BIND_H
+﻿#ifndef CORE_BIND_H
 #define CORE_BIND_H
 
 #include "core/image.h"
@@ -175,8 +145,10 @@ public:
 	virtual String get_video_driver_name(VideoDriver p_driver) const;
 	virtual VideoDriver get_current_video_driver() const;
 
+	/*
 	virtual int get_audio_driver_count() const;
 	virtual String get_audio_driver_name(int p_driver) const;
+	*/
 
 	virtual PoolStringArray get_connected_midi_inputs();
 	virtual void open_midi_inputs();
@@ -504,8 +476,10 @@ public:
 		COMPRESSION_GZIP = Compression::MODE_GZIP
 	};
 
+	/*
 	Error open_encrypted(const String &p_path, ModeFlags p_mode_flags, const Vector<uint8_t> &p_key);
 	Error open_encrypted_pass(const String &p_path, ModeFlags p_mode_flags, const String &p_pass);
+	*/
 	Error open_compressed(const String &p_path, ModeFlags p_mode_flags, CompressionMode p_compress_mode = COMPRESSION_FASTLZ);
 
 	Error open(const String &p_path, ModeFlags p_mode_flags); // open a file.
@@ -779,12 +753,12 @@ public:
 
 	MainLoop *get_main_loop() const;
 
-	Dictionary get_version_info() const;
+	/*Dictionary get_version_info() const;
 	Dictionary get_author_info() const;
 	Array get_copyright_info() const;
 	Dictionary get_donor_info() const;
 	Dictionary get_license_info() const;
-	String get_license_text() const;
+	String get_license_text() const;*/
 
 	bool is_in_physics_frame() const;
 

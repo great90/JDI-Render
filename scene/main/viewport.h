@@ -34,7 +34,7 @@
 #include "core/math/transform_2d.h"
 #include "scene/main/node.h"
 #include "scene/resources/texture.h"
-#include "scene/resources/world_2d.h"
+//#include "scene/resources/world_2d.h"
 #include "servers/visual_server.h"
 
 class Camera;
@@ -47,7 +47,7 @@ class Panel;
 class Label;
 class Timer;
 class Viewport;
-class CollisionObject;
+//class CollisionObject;
 
 class ViewportTexture : public Texture {
 
@@ -185,7 +185,7 @@ private:
 	Set<CanvasLayer *> canvas_layers;
 
 	RID viewport;
-	RID current_canvas;
+	//RID current_canvas;
 
 	bool audio_listener;
 	RID internal_listener;
@@ -242,14 +242,16 @@ private:
 
 	} physics_last_mouse_state;
 
-	void _collision_object_input_event(CollisionObject *p_object, Camera *p_camera, const Ref<InputEvent> &p_input_event, const Vector3 &p_pos, const Vector3 &p_normal, int p_shape);
+	//void _collision_object_input_event(CollisionObject *p_object, Camera *p_camera, const Ref<InputEvent> &p_input_event, const Vector3 &p_pos, const Vector3 &p_normal, int p_shape);
 
 	bool handle_input_locally;
 	bool local_input_handled;
 
 	Map<ObjectID, uint64_t> physics_2d_mouseover;
 
+	/*
 	Ref<World2D> world_2d;
+	*/
 	Ref<World> world;
 	Ref<World> own_world;
 
@@ -289,7 +291,7 @@ private:
 	Ref<ViewportTexture> default_texture;
 	Set<ViewportTexture *> viewport_textures;
 
-	struct GUI {
+	/*struct GUI {
 		// info used when this is a window
 
 		bool key_event_accepted;
@@ -323,10 +325,11 @@ private:
 
 		GUI();
 	} gui;
+	*/
 
 	bool disable_input;
 
-	void _gui_call_input(Control *p_control, const Ref<InputEvent> &p_input);
+	/*void _gui_call_input(Control *p_control, const Ref<InputEvent> &p_input);
 	void _gui_call_notification(Control *p_control, int p_what);
 
 	void _gui_prepare_subwindows();
@@ -336,7 +339,7 @@ private:
 	Control *_gui_find_control(const Point2 &p_global);
 	Control *_gui_find_control_at_pos(CanvasItem *p_node, const Point2 &p_global, const Transform2D &p_xform, Transform2D &r_inv_xform);
 
-	void _gui_input_event(Ref<InputEvent> p_event);
+	void _gui_input_event(Ref<InputEvent> p_event);*/
 
 	void update_worlds();
 
@@ -347,7 +350,7 @@ private:
 	void _vp_unhandled_input(const Ref<InputEvent> &p_ev);
 	Ref<InputEvent> _make_input_local(const Ref<InputEvent> &ev);
 
-	friend class Control;
+	/*friend class Control;
 
 	List<Control *>::Element *_gui_add_root_control(Control *p_control);
 	List<Control *>::Element *_gui_add_subwindow_control(Control *p_control);
@@ -382,11 +385,11 @@ private:
 	void _post_gui_grab_click_focus();
 	void _gui_accept_event();
 
-	Control *_gui_get_focus_owner();
+	Control *_gui_get_focus_owner();*/
 
 	Vector2 _get_window_offset() const;
 
-	bool _gui_drop(Control *p_at_control, Point2 p_at_pos, bool p_just_check);
+	//bool _gui_drop(Control *p_at_control, Point2 p_at_pos, bool p_just_check);
 
 	friend class Listener;
 	void _listener_transform_changed_notify();
@@ -406,10 +409,10 @@ private:
 	void _canvas_layer_add(CanvasLayer *p_canvas_layer);
 	void _canvas_layer_remove(CanvasLayer *p_canvas_layer);
 
-	void _drop_mouse_focus();
+	/*void _drop_mouse_focus();
 	void _drop_physics_mouseover(bool p_paused_only = false);
 
-	void _update_canvas_items(Node *p_node);
+	void _update_canvas_items(Node *p_node);*/
 
 	void _own_world_changed();
 
@@ -432,8 +435,8 @@ public:
 	void set_camera_override_perspective(float p_fovy_degrees, float p_z_near, float p_z_far);
 	void set_camera_override_orthogonal(float p_size, float p_z_near, float p_z_far);
 
-	void set_use_arvr(bool p_use_arvr);
-	bool use_arvr();
+	/*void set_use_arvr(bool p_use_arvr);
+	bool use_arvr();*/
 
 	void set_as_audio_listener(bool p_enable);
 	bool is_audio_listener() const;
@@ -449,10 +452,12 @@ public:
 	RID get_viewport_rid() const;
 
 	void set_world(const Ref<World> &p_world);
-	void set_world_2d(const Ref<World2D> &p_world_2d);
+	//void set_world_2d(const Ref<World2D> &p_world_2d);
 	Ref<World> get_world() const;
 	Ref<World> find_world() const;
 
+	/*
+	void set_world_2d(const Ref<World2D> &p_world_2d);
 	Ref<World2D> get_world_2d() const;
 	Ref<World2D> find_world_2d() const;
 
@@ -467,6 +472,7 @@ public:
 
 	void set_global_canvas_transform(const Transform2D &p_transform);
 	Transform2D get_global_canvas_transform() const;
+	*/
 
 	Transform2D get_final_transform() const;
 
@@ -538,13 +544,13 @@ public:
 	void set_physics_object_picking(bool p_enable);
 	bool get_physics_object_picking();
 
-	bool gui_has_modal_stack() const;
+	/*bool gui_has_modal_stack() const;
 
 	Variant gui_get_drag_data() const;
 	Control *get_modal_stack_top() const;
 
 	void gui_reset_canvas_sort_index();
-	int gui_get_canvas_sort_index();
+	int gui_get_canvas_sort_index();*/
 
 	virtual String get_configuration_warning() const;
 
@@ -567,7 +573,7 @@ public:
 	void set_handle_input_locally(bool p_enable);
 	bool is_handling_input_locally() const;
 
-	bool gui_is_dragging() const;
+	//bool gui_is_dragging() const;
 
 	Viewport();
 	~Viewport();

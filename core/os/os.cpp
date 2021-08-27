@@ -35,8 +35,8 @@
 #include "core/os/input.h"
 #include "core/os/midi_driver.h"
 #include "core/project_settings.h"
-#include "core/version_generated.gen.h"
-#include "servers/audio_server.h"
+//#include "core/version_generated.gen.h"
+//#include "servers/audio_server.h"
 
 #include <stdarg.h>
 
@@ -332,7 +332,7 @@ String OS::get_safe_dir_name(const String &p_dir_name, bool p_allow_dir_separato
 String OS::get_godot_dir_name() const {
 
 	// Default to lowercase, so only override when different case is needed
-	return String(VERSION_SHORT_NAME).to_lower();
+	return String("3.2").to_lower();
 }
 
 // OS equivalent of XDG_DATA_HOME
@@ -744,6 +744,7 @@ const char *OS::get_video_driver_name(int p_driver) const {
 	}
 }
 
+/*
 int OS::get_audio_driver_count() const {
 
 	return AudioDriverManager::get_driver_count();
@@ -755,6 +756,7 @@ const char *OS::get_audio_driver_name(int p_driver) const {
 	ERR_FAIL_COND_V_MSG(!driver, "", "Cannot get audio driver at index '" + itos(p_driver) + "'.");
 	return AudioDriverManager::get_driver(p_driver)->get_name();
 }
+*/
 
 void OS::set_restart_on_exit(bool p_restart, const List<String> &p_restart_arguments) {
 	restart_on_exit = p_restart;

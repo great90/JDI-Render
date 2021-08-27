@@ -30,8 +30,7 @@
 
 #include "http_client.h"
 
-#include "core/io/stream_peer_ssl.h"
-#include "core/version.h"
+//#include "core/io/stream_peer_ssl.h"
 
 const char *HTTPClient::_methods[METHOD_MAX] = {
 	"GET",
@@ -100,10 +99,10 @@ void HTTPClient::set_connection(const Ref<StreamPeer> &p_connection) {
 
 	ERR_FAIL_COND_MSG(p_connection.is_null(), "Connection is not a reference to a valid StreamPeer object.");
 
-	if (ssl) {
+	/*if (ssl) {
 		ERR_FAIL_NULL_MSG(Object::cast_to<StreamPeerSSL>(p_connection.ptr()),
 				"Connection is not a reference to a valid StreamPeerSSL object.");
-	}
+	}*/
 
 	if (connection == p_connection) {
 		return;
@@ -177,7 +176,7 @@ Error HTTPClient::request_raw(Method p_method, const String &p_url, const Vector
 		// Should it add utf8 encoding?
 	}
 	if (add_uagent) {
-		request += "User-Agent: GodotEngine/" + String(VERSION_FULL_BUILD) + " (" + OS::get_singleton()->get_name() + ")\r\n";
+		//request += "User-Agent: GodotEngine/" + String(VERSION_FULL_BUILD) + " (" + OS::get_singleton()->get_name() + ")\r\n";
 	}
 	if (add_accept) {
 		request += "Accept: */*\r\n";
@@ -251,7 +250,7 @@ Error HTTPClient::request(Method p_method, const String &p_url, const Vector<Str
 		// Should it add utf8 encoding?
 	}
 	if (add_uagent) {
-		request += "User-Agent: GodotEngine/" + String(VERSION_FULL_BUILD) + " (" + OS::get_singleton()->get_name() + ")\r\n";
+		//request += "User-Agent: GodotEngine/" + String(VERSION_FULL_BUILD) + " (" + OS::get_singleton()->get_name() + ")\r\n";
 	}
 	if (add_accept) {
 		request += "Accept: */*\r\n";
@@ -373,7 +372,7 @@ Error HTTPClient::poll() {
 					return OK;
 				} break;
 				case StreamPeerTCP::STATUS_CONNECTED: {
-					if (ssl) {
+					/*if (ssl) {
 						Ref<StreamPeerSSL> ssl;
 						if (!handshaking) {
 							// Connect the StreamPeerSSL and start handshaking
@@ -411,7 +410,7 @@ Error HTTPClient::poll() {
 							return ERR_CANT_CONNECT;
 						}
 						// ... we will need to poll more for handshake to finish
-					} else {
+					} else*/ {
 						status = STATUS_CONNECTED;
 					}
 					return OK;
@@ -428,14 +427,14 @@ Error HTTPClient::poll() {
 		case STATUS_BODY:
 		case STATUS_CONNECTED: {
 			// Check if we are still connected
-			if (ssl) {
+			/*if (ssl) {
 				Ref<StreamPeerSSL> tmp = connection;
 				tmp->poll();
 				if (tmp->get_status() != StreamPeerSSL::STATUS_CONNECTED) {
 					status = STATUS_CONNECTION_ERROR;
 					return ERR_CONNECTION_ERROR;
 				}
-			} else if (tcp_connection->get_status() != StreamPeerTCP::STATUS_CONNECTED) {
+			} else*/ if (tcp_connection->get_status() != StreamPeerTCP::STATUS_CONNECTED) {
 				status = STATUS_CONNECTION_ERROR;
 				return ERR_CONNECTION_ERROR;
 			}

@@ -30,7 +30,7 @@
 
 #include "config_file.h"
 
-#include "core/io/file_access_encrypted.h"
+//#include "core/io/file_access_encrypted.h"
 #include "core/os/keyboard.h"
 #include "core/variant_parser.h"
 
@@ -147,7 +147,7 @@ Error ConfigFile::save(const String &p_path) {
 	return _internal_save(file);
 }
 
-Error ConfigFile::save_encrypted(const String &p_path, const Vector<uint8_t> &p_key) {
+/*Error ConfigFile::save_encrypted(const String &p_path, const Vector<uint8_t> &p_key) {
 
 	Error err;
 	FileAccess *f = FileAccess::open(p_path, FileAccess::WRITE, &err);
@@ -182,7 +182,7 @@ Error ConfigFile::save_encrypted_pass(const String &p_path, const String &p_pass
 	}
 
 	return _internal_save(fae);
-}
+}*/
 
 Error ConfigFile::_internal_save(FileAccess *file) {
 
@@ -216,7 +216,7 @@ Error ConfigFile::load(const String &p_path) {
 	return _internal_load(p_path, f);
 }
 
-Error ConfigFile::load_encrypted(const String &p_path, const Vector<uint8_t> &p_key) {
+/*Error ConfigFile::load_encrypted(const String &p_path, const Vector<uint8_t> &p_key) {
 
 	Error err;
 	FileAccess *f = FileAccess::open(p_path, FileAccess::READ, &err);
@@ -251,7 +251,7 @@ Error ConfigFile::load_encrypted_pass(const String &p_path, const String &p_pass
 	}
 
 	return _internal_load(p_path, fae);
-}
+}*/
 
 Error ConfigFile::_internal_load(const String &p_path, FileAccess *f) {
 
@@ -328,11 +328,13 @@ void ConfigFile::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("parse", "data"), &ConfigFile::parse);
 	ClassDB::bind_method(D_METHOD("save", "path"), &ConfigFile::save);
 
+	/*
 	ClassDB::bind_method(D_METHOD("load_encrypted", "path", "key"), &ConfigFile::load_encrypted);
 	ClassDB::bind_method(D_METHOD("load_encrypted_pass", "path", "password"), &ConfigFile::load_encrypted_pass);
 
 	ClassDB::bind_method(D_METHOD("save_encrypted", "path", "key"), &ConfigFile::save_encrypted);
 	ClassDB::bind_method(D_METHOD("save_encrypted_pass", "path", "password"), &ConfigFile::save_encrypted_pass);
+	*/
 
 	ClassDB::bind_method(D_METHOD("clear"), &ConfigFile::clear);
 }

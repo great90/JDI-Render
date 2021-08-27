@@ -41,7 +41,7 @@ void CSGShape::set_use_collision(bool p_enable) {
 	if (!is_inside_tree() || !is_root_shape())
 		return;
 
-	if (use_collision) {
+	/*if (use_collision) {
 		root_collision_shape.instance();
 		root_collision_instance = PhysicsServer::get_singleton()->body_create(PhysicsServer::BODY_MODE_STATIC);
 		PhysicsServer::get_singleton()->body_set_state(root_collision_instance, PhysicsServer::BODY_STATE_TRANSFORM, get_global_transform());
@@ -55,7 +55,7 @@ void CSGShape::set_use_collision(bool p_enable) {
 		PhysicsServer::get_singleton()->free(root_collision_instance);
 		root_collision_instance = RID();
 		root_collision_shape.unref();
-	}
+	}*/
 	_change_notify();
 }
 
@@ -65,9 +65,9 @@ bool CSGShape::is_using_collision() const {
 
 void CSGShape::set_collision_layer(uint32_t p_layer) {
 	collision_layer = p_layer;
-	if (root_collision_instance.is_valid()) {
+	/*if (root_collision_instance.is_valid()) {
 		PhysicsServer::get_singleton()->body_set_collision_layer(root_collision_instance, p_layer);
-	}
+	}*/
 }
 
 uint32_t CSGShape::get_collision_layer() const {
@@ -78,9 +78,9 @@ uint32_t CSGShape::get_collision_layer() const {
 void CSGShape::set_collision_mask(uint32_t p_mask) {
 
 	collision_mask = p_mask;
-	if (root_collision_instance.is_valid()) {
+	/*if (root_collision_instance.is_valid()) {
 		PhysicsServer::get_singleton()->body_set_collision_mask(root_collision_instance, p_mask);
-	}
+	}*/
 }
 
 uint32_t CSGShape::get_collision_mask() const {
@@ -503,7 +503,7 @@ void CSGShape::_notification(int p_what) {
 			}
 		}
 
-		if (use_collision && is_root_shape()) {
+		/*if (use_collision && is_root_shape()) {
 			root_collision_shape.instance();
 			root_collision_instance = PhysicsServer::get_singleton()->body_create(PhysicsServer::BODY_MODE_STATIC);
 			PhysicsServer::get_singleton()->body_set_state(root_collision_instance, PhysicsServer::BODY_STATE_TRANSFORM, get_global_transform());
@@ -512,15 +512,15 @@ void CSGShape::_notification(int p_what) {
 			PhysicsServer::get_singleton()->body_attach_object_instance_id(root_collision_instance, get_instance_id());
 			set_collision_layer(collision_layer);
 			set_collision_mask(collision_mask);
-		}
+		}*/
 
 		_make_dirty();
 	}
 
 	if (p_what == NOTIFICATION_TRANSFORM_CHANGED) {
-		if (use_collision && is_root_shape() && root_collision_instance.is_valid()) {
+		/*if (use_collision && is_root_shape() && root_collision_instance.is_valid()) {
 			PhysicsServer::get_singleton()->body_set_state(root_collision_instance, PhysicsServer::BODY_STATE_TRANSFORM, get_global_transform());
-		}
+		}*/
 	}
 
 	if (p_what == NOTIFICATION_LOCAL_TRANSFORM_CHANGED) {
@@ -543,11 +543,11 @@ void CSGShape::_notification(int p_what) {
 			parent->_make_dirty();
 		parent = NULL;
 
-		if (use_collision && is_root_shape() && root_collision_instance.is_valid()) {
+		/*if (use_collision && is_root_shape() && root_collision_instance.is_valid()) {
 			PhysicsServer::get_singleton()->free(root_collision_instance);
 			root_collision_instance = RID();
 			root_collision_shape.unref();
-		}
+		}*/
 		_make_dirty();
 	}
 }

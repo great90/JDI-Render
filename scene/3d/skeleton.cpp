@@ -33,7 +33,7 @@
 #include "core/message_queue.h"
 
 #include "core/project_settings.h"
-#include "scene/3d/physics_body.h"
+//#include "scene/3d/physics_body.h"
 #include "scene/resources/surface_tool.h"
 
 void SkinReference::_skin_changed() {
@@ -634,7 +634,7 @@ void Skeleton::localize_rests() {
 	}
 }
 
-#ifndef _3D_DISABLED
+/*#ifndef _3D_DISABLED
 
 void Skeleton::bind_physical_bone_to_bone(int p_bone, PhysicalBone *p_physical_bone) {
 	ERR_FAIL_INDEX(p_bone, bones.size());
@@ -765,7 +765,7 @@ void _physical_bones_add_remove_collision_exception(bool p_add, Node *p_node, RI
 		_physical_bones_add_remove_collision_exception(p_add, p_node->get_child(i), p_exception);
 	}
 
-	CollisionObject *co = Object::cast_to<CollisionObject>(p_node);
+	/*CollisionObject *co = Object::cast_to<CollisionObject>(p_node);
 	if (co) {
 		if (p_add) {
 			PhysicsServer::get_singleton()->body_add_collision_exception(co->get_rid(), p_exception);
@@ -783,7 +783,7 @@ void Skeleton::physical_bones_remove_collision_exception(RID p_exception) {
 	_physical_bones_add_remove_collision_exception(false, this, p_exception);
 }
 
-#endif // _3D_DISABLED
+#endif // _3D_DISABLED*/
 
 void Skeleton::_skin_changed() {
 	_make_dirty();
@@ -888,14 +888,14 @@ void Skeleton::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_bone_custom_pose", "bone_idx"), &Skeleton::get_bone_custom_pose);
 	ClassDB::bind_method(D_METHOD("set_bone_custom_pose", "bone_idx", "custom_pose"), &Skeleton::set_bone_custom_pose);
 
-#ifndef _3D_DISABLED
+/*#ifndef _3D_DISABLED
 
 	ClassDB::bind_method(D_METHOD("physical_bones_stop_simulation"), &Skeleton::physical_bones_stop_simulation);
 	ClassDB::bind_method(D_METHOD("physical_bones_start_simulation", "bones"), &Skeleton::physical_bones_start_simulation_on, DEFVAL(Array()));
 	ClassDB::bind_method(D_METHOD("physical_bones_add_collision_exception", "exception"), &Skeleton::physical_bones_add_collision_exception);
 	ClassDB::bind_method(D_METHOD("physical_bones_remove_collision_exception", "exception"), &Skeleton::physical_bones_remove_collision_exception);
 
-#endif // _3D_DISABLED
+#endif // _3D_DISABLED*/
 
 	ADD_SIGNAL(MethodInfo("skeleton_updated"));
 

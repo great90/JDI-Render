@@ -1,4 +1,4 @@
-/*************************************************************************/
+﻿/*************************************************************************/
 /*  file_access_pack.cpp                                                 */
 /*************************************************************************/
 /*                       This file is part of:                           */
@@ -29,8 +29,6 @@
 /*************************************************************************/
 
 #include "file_access_pack.h"
-
-#include "core/version.h"
 
 #include <stdio.h>
 
@@ -184,11 +182,11 @@ bool PackedSourcePCK::try_open_pack(const String &p_path, bool p_replace_files, 
 		memdelete(f);
 		ERR_FAIL_V_MSG(false, "Pack version unsupported: " + itos(version) + ".");
 	}
-	if (ver_major > VERSION_MAJOR || (ver_major == VERSION_MAJOR && ver_minor > VERSION_MINOR)) {
+	/*if (ver_major > VERSION_MAJOR || (ver_major == VERSION_MAJOR && ver_minor > VERSION_MINOR)) {
 		f->close();
 		memdelete(f);
 		ERR_FAIL_V_MSG(false, "Pack created with a newer version of the engine: " + itos(ver_major) + "." + itos(ver_minor) + ".");
-	}
+	}*/
 
 	for (int i = 0; i < 16; i++) {
 		//reserved
