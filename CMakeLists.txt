@@ -86,7 +86,7 @@ endif(CCACHE_FOUND)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 ################################################################################
 
-set(PROJECT_NAME "JDI")
+set(PROJECT_NAME "JDI-Render")
 # project settings
 project(${PROJECT_NAME})
 
